@@ -1,0 +1,1 @@
+public record Resource(String name, int weight) {}
