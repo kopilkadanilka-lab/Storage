@@ -17,22 +17,26 @@ public class Storage {
             return false;
         }
         else {
-            boolean found = false;
             for (int i = 0; i < this.size; i++) {
                 if (resource.name().equals(this.resources[i].name())) {
-                    this.resources[i].weight() = this.resources[i].weight() + resource.weight();
-                    found = true;
-                    break;
-                }
-            if (!found) {
-                this.resources[this.size] = resource;
-                this.size++;
-            }
-            
-            }
-        }
+                    int totalWeight = this.resources[i].weight() + resource.weight();
+                    this.resources[i] = new Resource(resource.name(), totalWeight);
 
+                    this.currentWeight += resource.weight();
+                    return true;
+                }
+            }
+            if (this.size >= this.resources.length) {
+                System.out.println("Все ячейки склада заняты");
+                return false;
+            }
+            this.resources[this.size] = resource;
+            this.currentWeight += resource.weight();
+            this.size++;
+            return true;
+        }
     }
+
 
     public Resource extract(String name, int weight) {
 
