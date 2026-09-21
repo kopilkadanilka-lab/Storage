@@ -11,7 +11,26 @@ public class Storage {
         this.size = 0;
     }
 
-    public boolean add(Resource resource) {
+    public boolean add(Resource resource) { // метод добавления ресурсов в хранилище
+        if (this.currentWeight + resource.weight() >= this.maxCapacity) {
+            System.out.println("Столько места в хранилище у нас не найдется(");
+            return false;
+        }
+        else {
+            boolean found = false;
+            for (int i = 0; i < this.size; i++) {
+                if (resource.name().equals(this.resources[i].name())) {
+                    this.resources[i].weight() = this.resources[i].weight() + resource.weight();
+                    found = true;
+                    break;
+                }
+            if (!found) {
+                this.resources[this.size] = resource;
+                this.size++;
+            }
+            
+            }
+        }
 
     }
 
