@@ -1,13 +1,25 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+public class Main {
+    public static void main(String[] args) {
+        Storage storage = new Storage(100, 2);
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+        System.out.println("--- ТЕСТ 1: Добавление первого ресурса ---");
+        storage.add(new Resource("Железо", 30));
+        storage.printStorage();
+
+        System.out.println("\n--- ТЕСТ 2: Стаканье одинакового ресурса ---");
+        storage.add(new Resource("Железо", 40));
+        storage.printStorage();
+
+        System.out.println("\n--- ТЕСТ 3: Добавление второго типа ресурса ---");
+        storage.add(new Resource("Дерево", 20));
+        storage.printStorage();
+
+        System.out.println("\n--- ТЕСТ 4: Превышение лимита по слотам ---");
+        storage.add(new Resource("Уголь", 5));
+        storage.printStorage();
+
+        System.out.println("\n--- ТЕСТ 5: Превышение грузоподъемности ---");
+        storage.add(new Resource("Железо", 20));
+        storage.printStorage();
     }
 }
