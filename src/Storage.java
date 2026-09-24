@@ -38,9 +38,9 @@ public class Storage {
     }
 
 
-    public Resource extract(String name, int weight) {
+    //public Resource extract(String name, int weight) {
 
-    }
+    //}
 
     public void printStorage() {
         System.out.println("=====СКЛАД=====");
@@ -49,6 +49,6 @@ public class Storage {
         for (int i = 0; i < this.size; i++) {
             System.out.println("- " + this.resources[i].name() + ": " + this.resources[i].weight());
         }
-        System.out.println("===============================");
+        System.out.println("==============================");
     }
 }
