@@ -1,14 +1,19 @@
 public class Storage {
-    private int maxCapacity;
+    private final int maxCapacity;
     private int currentWeight;
     private Resource[] resources;
     private int size;
 
     public Storage(int maxCapacity, int maxSlots) {
-        this.maxCapacity = maxCapacity;
-        this.resources = new Resource[maxSlots];
-        this.currentWeight = 0;
-        this.size = 0;
+        if (maxSlots > 0 && maxCapacity > 0) {
+            this.maxCapacity = maxCapacity;
+            this.resources = new Resource[maxSlots];
+            this.currentWeight = 0;
+            this.size = 0;
+        }
+        else {
+            throw new IllegalArgumentException("Неккоректные параметры класса");
+        }
     }
 
     public boolean add(Resource resource) { // метод добавления ресурсов в хранилище
