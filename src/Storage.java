@@ -12,6 +12,10 @@ public class Storage {
     }
 
     public boolean add(Resource resource) { // метод добавления ресурсов в хранилище
+        if (resource.weight() <= 0) {
+            System.out.println("Ну и что ты добавляешь?");
+            return false;
+        }
         if (this.currentWeight + resource.weight() > this.maxCapacity) {
             System.out.println("Столько места в хранилище у нас не найдется(");
             return false;
@@ -38,9 +42,43 @@ public class Storage {
     }
 
 
-    //public Resource extract(String name, int weight) {
+    public Resource extract(String name, int weight) {
+        // проверка на идиота
+        if (weight <= 0) {
+            System.out.println("Че ты собираешься забирать?");
+            return null;
+        }
+        else {
+            // проходимся по всем ресурсам на складе
+            for (int i = 0; i < size; i++) {
+                // ищем совпадение по именам
+                if (this.resources[i].name().equals(name)) {
+                    // проверяем есть ли столько ресурса на складе
+                    if (this.resources[i].weight() < weight) {
+                        System.out.println("У нас столько нет.\n Есть только: " + this.resources[i].weight());
+                        return null;
+                    }
 
-    //}
+                    else {
+                        if (weight < resources[i].weight()) {
+                            int remainder = resources[i].weight() - weight;
+                            resources[i] = new Resource(name, remainder);
+                        }
+                        else if (weight == resources[i].weight()) {
+                            for (int j = i; j < size - 1; j++) {
+                                resources[j] = resources[j + 1];
+                            }
+                            resources[--size] = null;
+                        }
+                        this.currentWeight -= weight;
+                        return new Resource(name, weight);
+                    }
+                }
+            }
+        }
+        System.out.println("Такого ресурса на складе нет");
+        return null;
+    }
 
     public void printStorage() {
         System.out.println("=====СКЛАД=====");
