@@ -17,11 +17,11 @@ public class Storage {
     }
 
     public boolean add(Resource resource) { // метод добавления ресурсов в хранилище
-        if (resource.weight() <= 0) {
+        if (resource.weight() <= 0 || resource == null) {
             System.out.println("Ну и что ты добавляешь?");
             return false;
         }
-        if (this.currentWeight + resource.weight() > this.maxCapacity) {
+        if (this.currentWeight > this.maxCapacity - resource.weight()) {
             System.out.println("Столько места в хранилище у нас не найдется(");
             return false;
         }
