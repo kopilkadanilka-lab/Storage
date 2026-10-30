@@ -17,7 +17,11 @@ public class Storage {
     }
 
     public boolean add(Resource resource) { // метод добавления ресурсов в хранилище
-        if (resource.weight() <= 0 || resource == null) {
+        if (resource == null) {
+            System.out.println("Ресурс отсутствует");
+            return false;
+        }
+        if (resource.weight() <= 0) {
             System.out.println("Ну и что ты добавляешь?");
             return false;
         }
