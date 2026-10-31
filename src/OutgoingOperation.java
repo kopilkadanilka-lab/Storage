@@ -1,10 +1,7 @@
-public class OutgoingOperation implements WarehouseOperation {
-    private final String name;
-    private final int weight;
+public class OutgoingOperation extends ResourceOperation {
 
     public OutgoingOperation(String name, int weight) {
-        this.name = name;
-        this.weight = weight;
+        super(name, weight);
     }
 
     @Override

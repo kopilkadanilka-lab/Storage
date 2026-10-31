@@ -1,11 +1,11 @@
-public class IncomingOperation implements WarehouseOperation {
-    private final Resource resource;
+public class IncomingOperation extends ResourceOperation {
 
     public IncomingOperation(Resource resource) {
-        this.resource = resource;
+        super(resource.name(), resource.weight());
     }
+
     @Override
     public boolean execute(Storage storage) {
-        return storage.add(resource);
+        return storage.add(new Resource(name, weight));
     }
 }
