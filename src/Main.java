@@ -1,25 +1,23 @@
+
 public class Main {
-    public static void main(String[] args) {
-        Storage storage = new Storage(100, 2);
-
-        System.out.println("--- ТЕСТ 1: Добавление первого ресурса ---");
-        storage.add(new Resource("Железо", 30));
+    static void main(String[] args) {
+        Storage storage = new Storage(100, 3);
         storage.printStorage();
 
-        System.out.println("\n--- ТЕСТ 2: Стаканье одинакового ресурса ---");
-        storage.add(new Resource("Железо", 40));
-        storage.printStorage();
+        WarehouseOperation[] operations = {
+                new IncomingOperation(new Resource("Железо", 50)),
+                new IncomingOperation(new Resource("Дерево", 20)),
+                new OutgoingOperation("Железо", 15),
+                new IncomingOperation(new Resource("Уголь", 10)),
+                new OutgoingOperation("Дерево", 5),
+                new OutgoingOperation("Алмазы", 10),
+                new IncomingOperation(new Resource("Медь", 5))
+        };
 
-        System.out.println("\n--- ТЕСТ 3: Добавление второго типа ресурса ---");
-        storage.add(new Resource("Дерево", 20));
-        storage.printStorage();
-
-        System.out.println("\n--- ТЕСТ 4: Превышение лимита по слотам ---");
-        storage.add(new Resource("Уголь", 5));
-        storage.printStorage();
-
-        System.out.println("\n--- ТЕСТ 5: Превышение грузоподъемности ---");
-        storage.add(new Resource("Железо", 20));
+        for (WarehouseOperation operation : operations) {
+            boolean result = operation.execute(storage);
+            System.out.println("Успешно? " + result);
+        }
         storage.printStorage();
     }
 }
